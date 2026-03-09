@@ -2,255 +2,127 @@ package com.focusguard.app.accessibility
 
 import android.accessibilityservice.AccessibilityService
 import android.accessibilityservice.AccessibilityServiceInfo
-import android.content.Intent
 import android.util.Log
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
-import com.focusguard.app.config.BlockedAppConfig
-import com.focusguard.app.config.BlockedSection
 import com.focusguard.app.utils.PreferencesManager
 
-/**
- * FocusAccessibilityService
- *
- * Monitors Instagram (and optionally other apps) for distraction-heavy sections.
- * When a blocked section is detected, it performs a back action or clicks the
- * Direct Messages icon to redirect the user.
- *
- * Architecture:
- * - Event-driven only (no polling loops) for battery efficiency.
- * - Only runs heavy logic when the target package is in the foreground.
- * - Config is loaded fresh on each relevant event to reflect live preference changes.
- */
 class FocusAccessibilityService : AccessibilityService() {
 
     companion object {
         private const val TAG = "FocusGuardA11y"
         private const val INSTAGRAM_PACKAGE = "com.instagram.android"
-
-        // Cooldown to avoid redirect loops: don't redirect more than once per 2 seconds
         private const val REDIRECT_COOLDOWN_MS = 2000L
 
-        // Singleton reference so other components can check if service is running
+        // Exact resource IDs from Instagram's APK
+        private const val ID_REELS_TAB    = "com.instagram.android:id/clips_tab"
+        private const val ID_EXPLORE_TAB  = "com.instagram.android:id/search_tab"
+
+        // The DM inbox tab — redirect destination
+        private const val ID_DM_TAB       = "com.instagram.android:id/direct_inbox_tab"
+
+        // Fallback: home tab
+        private const val ID_HOME_TAB     = "com.instagram.android:id/feed_tab"
+
         @Volatile
         var instance: FocusAccessibilityService? = null
             private set
     }
 
     private var lastRedirectTimeMs = 0L
-    private var lastDetectedPackage: String? = null
 
-    // ─── Lifecycle ────────────────────────────────────────────────────────────
+    // ── Lifecycle ─────────────────────────────────────────────────────────────
 
     override fun onServiceConnected() {
         super.onServiceConnected()
         instance = this
-        Log.i(TAG, "FocusGuard Accessibility Service connected")
-
-        // Dynamically configure the service (belt-and-suspenders alongside XML config)
         serviceInfo = serviceInfo.apply {
             eventTypes = AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED or
-                    AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED
+                         AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED or
+                         AccessibilityEvent.TYPE_VIEW_CLICKED
             feedbackType = AccessibilityServiceInfo.FEEDBACK_GENERIC
-            notificationTimeout = 100
+            notificationTimeout = 50
             flags = AccessibilityServiceInfo.FLAG_INCLUDE_NOT_IMPORTANT_VIEWS or
                     AccessibilityServiceInfo.FLAG_RETRIEVE_INTERACTIVE_WINDOWS
         }
+        Log.i(TAG, "FocusGuard Accessibility Service connected ✓")
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        instance = null
-        Log.i(TAG, "FocusGuard Accessibility Service destroyed")
-    }
+    override fun onDestroy() { super.onDestroy(); instance = null }
+    override fun onInterrupt() { Log.w(TAG, "Service interrupted") }
 
-    override fun onInterrupt() {
-        Log.w(TAG, "FocusGuard Accessibility Service interrupted")
-    }
-
-    // ─── Core Event Handler ───────────────────────────────────────────────────
+    // ── Core Event Handler ────────────────────────────────────────────────────
 
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {
         event ?: return
 
-        // Skip irrelevant event types early
-        if (event.eventType != AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED &&
-            event.eventType != AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED
-        ) return
-
-        val packageName = event.packageName?.toString() ?: return
-
-        // Only act on configured packages
-        val configs = PreferencesManager.getBlockedAppsConfig(this)
-        val appConfig = configs.find { it.packageName == packageName } ?: return
-
-        // Focus mode must be enabled
+        val pkg = event.packageName?.toString() ?: return
+        if (pkg != INSTAGRAM_PACKAGE) return
         if (!PreferencesManager.isFocusModeEnabled(this)) return
 
-        // Track package transitions for logging
-        if (packageName != lastDetectedPackage) {
-            Log.d(TAG, "Now monitoring: $packageName")
-            lastDetectedPackage = packageName
-        }
-
-        // Inspect the current window's node tree
-        val rootNode = rootInActiveWindow ?: return
+        val root = rootInActiveWindow ?: return
         try {
-            evaluateWindowForBlocking(rootNode, appConfig)
-        } finally {
-            rootNode.recycle()
-        }
-    }
-
-    // ─── Detection & Redirect Logic ───────────────────────────────────────────
-
-    /**
-     * Walk the accessibility node tree and check if any enabled blocked section
-     * is currently visible. If so, trigger a redirect.
-     */
-    private fun evaluateWindowForBlocking(
-        root: AccessibilityNodeInfo,
-        appConfig: BlockedAppConfig
-    ) {
-        val enabledSections = appConfig.sections.filter { it.isEnabled }
-        if (enabledSections.isEmpty()) return
-
-        // Collect all visible text from the node tree (limited depth for performance)
-        val visibleTexts = collectVisibleTexts(root, maxDepth = 8)
-
-        for (section in enabledSections) {
-            if (isBlockedSectionVisible(visibleTexts, section)) {
-                Log.i(TAG, "Blocked section detected: ${section.label} in ${appConfig.packageName}")
-                triggerRedirect(appConfig.packageName)
-                return // One redirect per event cycle is enough
-            }
-        }
-    }
-
-    /**
-     * Check if any of the section's keywords appear in visible text.
-     * Uses case-insensitive substring match.
-     */
-    private fun isBlockedSectionVisible(
-        visibleTexts: List<String>,
-        section: BlockedSection
-    ): Boolean {
-        return visibleTexts.any { text ->
-            section.keywords.any { keyword ->
-                text.contains(keyword, ignoreCase = true)
-            }
-        }
-    }
-
-    /**
-     * BFS traversal of the node tree collecting non-empty text strings.
-     * Depth-limited to avoid excessive traversal on complex UIs.
-     */
-    private fun collectVisibleTexts(root: AccessibilityNodeInfo, maxDepth: Int): List<String> {
-        val texts = mutableListOf<String>()
-        val queue = ArrayDeque<Pair<AccessibilityNodeInfo, Int>>()
-        queue.add(Pair(root, 0))
-
-        while (queue.isNotEmpty()) {
-            val (node, depth) = queue.removeFirst()
-            if (depth > maxDepth) continue
-
-            // Collect text and content description
-            node.text?.toString()?.takeIf { it.isNotBlank() }?.let { texts.add(it) }
-            node.contentDescription?.toString()?.takeIf { it.isNotBlank() }?.let { texts.add(it) }
-
-            // Enqueue children
-            for (i in 0 until node.childCount) {
-                node.getChild(i)?.let { child ->
-                    queue.add(Pair(child, depth + 1))
-                }
-            }
-        }
-
-        return texts
-    }
-
-    // ─── Redirect Actions ─────────────────────────────────────────────────────
-
-    /**
-     * Performs the redirect action with cooldown to prevent loops.
-     * For Instagram: try to navigate to DMs first, fall back to global back.
-     */
-    private fun triggerRedirect(packageName: String) {
-        val now = System.currentTimeMillis()
-        if (now - lastRedirectTimeMs < REDIRECT_COOLDOWN_MS) {
-            Log.d(TAG, "Redirect skipped (cooldown active)")
-            return
-        }
-        lastRedirectTimeMs = now
-
-        when (packageName) {
-            INSTAGRAM_PACKAGE -> redirectInstagramToDMs()
-            else -> performGlobalBack()
-        }
-    }
-
-    /**
-     * Attempts to click the Instagram Direct Messages button in the nav bar.
-     * Falls back to global back if the DM button cannot be found.
-     */
-    private fun redirectInstagramToDMs() {
-        val root = rootInActiveWindow ?: run {
-            performGlobalBack()
-            return
-        }
-
-        try {
-            // Instagram's DM icon typically has content description containing "Direct" or "Messages"
-            val dmKeywords = listOf("direct", "messages", "dm", "messenger", "chats", "inbox")
-            val dmNode = findNodeByContentDescription(root, dmKeywords)
-
-            if (dmNode != null) {
-                Log.i(TAG, "Clicking DM button to redirect")
-                dmNode.performAction(AccessibilityNodeInfo.ACTION_CLICK)
-                dmNode.recycle()
-            } else {
-                Log.i(TAG, "DM button not found, performing global back")
-                performGlobalBack()
-            }
+            checkAndBlock(root)
         } finally {
             root.recycle()
         }
     }
 
-    /**
-     * Searches the node tree for a clickable node whose content description
-     * matches any of the given keywords.
-     */
-    private fun findNodeByContentDescription(
-        root: AccessibilityNodeInfo,
-        keywords: List<String>
-    ): AccessibilityNodeInfo? {
-        val queue = ArrayDeque<AccessibilityNodeInfo>()
-        queue.add(root)
+    // ── Detection ─────────────────────────────────────────────────────────────
 
-        while (queue.isNotEmpty()) {
-            val node = queue.removeFirst()
-            val desc = node.contentDescription?.toString() ?: ""
-            val text = node.text?.toString() ?: ""
-            val combined = "$desc $text".lowercase()
-
-            if (keywords.any { combined.contains(it) } && node.isClickable) {
-                return node
-            }
-
-            for (i in 0 until node.childCount) {
-                node.getChild(i)?.let { queue.add(it) }
-            }
+    private fun checkAndBlock(root: AccessibilityNodeInfo) {
+        // Check if a blocked tab is currently selected/focused
+        if (isTabSelected(root, ID_REELS_TAB)) {
+            Log.i(TAG, "🚫 Reels tab detected — redirecting")
+            redirect(root)
+            return
         }
-        return null
+        if (isTabSelected(root, ID_EXPLORE_TAB)) {
+            Log.i(TAG, "🚫 Explore tab detected — redirecting")
+            redirect(root)
+            return
+        }
     }
 
     /**
-     * Performs the global BACK action — the safe fallback redirect.
+     * Returns true if the node with the given viewId exists AND is selected/focused.
+     * We check isSelected so we only trigger when the user actually tapped it,
+     * not just when it's visible in the nav bar.
      */
-    private fun performGlobalBack() {
-        Log.i(TAG, "Performing GLOBAL_ACTION_BACK")
+    private fun isTabSelected(root: AccessibilityNodeInfo, viewId: String): Boolean {
+        val nodes = root.findAccessibilityNodeInfosByViewId(viewId)
+        if (nodes.isNullOrEmpty()) return false
+        val result = nodes.any { node ->
+            val selected = node.isSelected || node.isChecked || node.isFocused
+            node.recycle()
+            selected
+        }
+        return result
+    }
+
+    // ── Redirect ──────────────────────────────────────────────────────────────
+
+    private fun redirect(root: AccessibilityNodeInfo) {
+        val now = System.currentTimeMillis()
+        if (now - lastRedirectTimeMs < REDIRECT_COOLDOWN_MS) return
+        lastRedirectTimeMs = now
+
+        // Try clicking DM tab first
+        if (clickTab(root, ID_DM_TAB)) return
+        // Try home tab
+        if (clickTab(root, ID_HOME_TAB)) return
+        // Final fallback
+        Log.i(TAG, "No tab found — using BACK")
         performGlobalAction(GLOBAL_ACTION_BACK)
+    }
+
+    private fun clickTab(root: AccessibilityNodeInfo, viewId: String): Boolean {
+        val nodes = root.findAccessibilityNodeInfosByViewId(viewId)
+        if (nodes.isNullOrEmpty()) return false
+        val node = nodes.first()
+        val clicked = node.performAction(AccessibilityNodeInfo.ACTION_CLICK)
+        node.recycle()
+        if (clicked) Log.i(TAG, "✓ Clicked tab: $viewId")
+        return clicked
     }
 }
