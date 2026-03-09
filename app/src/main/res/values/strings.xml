@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">FocusGuard</string>
+    <string name="accessibility_service_label">FocusGuard Focus Service</string>
+    <string name="accessibility_service_description">FocusGuard monitors Instagram to redirect you away from Reels and Explore, keeping your experience focused on Direct Messages.</string>
+    <string name="blocked_sections_title">Blocked Sections</string>
+</resources>
