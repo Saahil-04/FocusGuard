@@ -4,6 +4,7 @@ package com.focusguard.app.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +22,9 @@ public final class ItemAppConfigBinding implements ViewBinding {
   private final MaterialCardView rootView;
 
   @NonNull
+  public final ImageView ivAppIcon;
+
+  @NonNull
   public final RecyclerView rvSections;
 
   @NonNull
@@ -29,9 +33,11 @@ public final class ItemAppConfigBinding implements ViewBinding {
   @NonNull
   public final TextView tvPackageName;
 
-  private ItemAppConfigBinding(@NonNull MaterialCardView rootView, @NonNull RecyclerView rvSections,
-      @NonNull TextView tvAppName, @NonNull TextView tvPackageName) {
+  private ItemAppConfigBinding(@NonNull MaterialCardView rootView, @NonNull ImageView ivAppIcon,
+      @NonNull RecyclerView rvSections, @NonNull TextView tvAppName,
+      @NonNull TextView tvPackageName) {
     this.rootView = rootView;
+    this.ivAppIcon = ivAppIcon;
     this.rvSections = rvSections;
     this.tvAppName = tvAppName;
     this.tvPackageName = tvPackageName;
@@ -64,6 +70,12 @@ public final class ItemAppConfigBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.ivAppIcon;
+      ImageView ivAppIcon = ViewBindings.findChildViewById(rootView, id);
+      if (ivAppIcon == null) {
+        break missingId;
+      }
+
       id = R.id.rvSections;
       RecyclerView rvSections = ViewBindings.findChildViewById(rootView, id);
       if (rvSections == null) {
@@ -82,7 +94,7 @@ public final class ItemAppConfigBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemAppConfigBinding((MaterialCardView) rootView, rvSections, tvAppName,
+      return new ItemAppConfigBinding((MaterialCardView) rootView, ivAppIcon, rvSections, tvAppName,
           tvPackageName);
     }
     String missingId = rootView.getResources().getResourceName(id);

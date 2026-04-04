@@ -39,8 +39,15 @@ android {
 dependencies {
     implementation 'androidx.core:core-ktx:1.12.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.11.0'
+
+    // Material 3 — replaces material:1.11.0 which is still M2/M3 hybrid
+    // 1.12.0 is the first stable release with full Material3 theme support
+    implementation 'com.google.android.material:material:1.12.0'
+
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.lifecycle:lifecycle-service:2.6.2'
     implementation 'com.google.code.gson:gson:2.10.1'
+
+    // Core splashscreen API for edge-to-edge support on older APIs
+    implementation 'androidx.core:core-splashscreen:1.0.1'
 }

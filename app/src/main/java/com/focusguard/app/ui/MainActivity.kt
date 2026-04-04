@@ -1,9 +1,13 @@
 package com.focusguard.app.ui
 
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.view.WindowCompat
 import com.focusguard.app.R
 import com.focusguard.app.databinding.ActivityMainBinding
 import com.focusguard.app.service.FocusGuardForegroundService
@@ -14,11 +18,12 @@ import com.google.android.material.snackbar.Snackbar
 /**
  * MainActivity — the primary user-facing screen.
  *
- * Provides:
- * - Accessibility service status indicator
- * - Focus mode enable/disable toggle
- * - Quick link to blocked sections configuration
- * - Shortcuts to required system settings
+ * Design:
+ *  - Edge-to-edge layout (WindowCompat.setDecorFitsSystemWindows = false)
+ *  - Hero gradient card shows live focus status + inline switch
+ *  - Accessibility status card updates on every resume
+ *  - Theme toggle persisted to PreferencesManager
+ *  - Card row tap targets for Manage Sections and Battery Optimization
  */
 class MainActivity : AppCompatActivity() {
 
@@ -26,116 +31,167 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Edge-to-edge: let content draw behind system bars
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupUI()
+        applyStoredTheme()
+        setupClickListeners()
     }
 
     override fun onResume() {
         super.onResume()
-        // Refresh accessibility status every time the user returns to this screen
         updateAccessibilityStatus()
         updateFocusToggleState()
     }
 
-    // ─── UI Setup ─────────────────────────────────────────────────────────────
+    // ─── Theme ────────────────────────────────────────────────────────────────
 
-    private fun setupUI() {
-        // Focus mode toggle
+    private fun applyStoredTheme() {
+        val isDark = PreferencesManager.isDarkMode(this)
+        AppCompatDelegate.setDefaultNightMode(
+            if (isDark) AppCompatDelegate.MODE_NIGHT_YES
+            else AppCompatDelegate.MODE_NIGHT_NO
+        )
+    }
+
+    // ─── Click wiring ─────────────────────────────────────────────────────────
+
+    private fun setupClickListeners() {
+        // Theme toggle
+        binding.btnThemeToggle.setOnClickListener {
+            val isDark = PreferencesManager.isDarkMode(this)
+            PreferencesManager.setDarkMode(this, !isDark)
+            AppCompatDelegate.setDefaultNightMode(
+                if (!isDark) AppCompatDelegate.MODE_NIGHT_YES
+                else AppCompatDelegate.MODE_NIGHT_NO
+            )
+        }
+
+        // Focus mode switch
         binding.switchFocusMode.setOnCheckedChangeListener { _, isChecked ->
             onFocusModeToggled(isChecked)
         }
 
-        // Enable Accessibility Service button
+        // Accessibility enable button (visible only when disabled)
         binding.btnEnableAccessibility.setOnClickListener {
             AccessibilityUtils.openAccessibilitySettings(this)
-            Snackbar.make(
-                binding.root,
-                "Find 'FocusGuard' and enable it",
-                Snackbar.LENGTH_LONG
-            ).show()
+            showSnackbar(getString(R.string.a11y_guide))
         }
 
-        // Manage blocked sections
-        binding.btnManageSections.setOnClickListener {
+        // Manage sections — full card is tappable
+        binding.cardManageSections.setOnClickListener {
             startActivity(Intent(this, BlockedSectionsActivity::class.java))
         }
 
-        // Battery optimization
-        binding.btnBatteryOptimization.setOnClickListener {
+        // Battery optimization — full card is tappable
+        binding.cardBattery.setOnClickListener {
             AccessibilityUtils.openBatteryOptimizationSettings(this)
-            Snackbar.make(
-                binding.root,
-                "Select 'Don't optimize' to prevent service interruption",
-                Snackbar.LENGTH_LONG
-            ).show()
+            showSnackbar(getString(R.string.battery_guide))
         }
     }
 
-    // ─── State Updates ────────────────────────────────────────────────────────
+    // ─── State updates ────────────────────────────────────────────────────────
 
     private fun updateAccessibilityStatus() {
         val isEnabled = AccessibilityUtils.isAccessibilityServiceEnabled(this)
 
         binding.tvAccessibilityStatus.text = if (isEnabled) {
-            "✓ Accessibility service is enabled"
+            getString(R.string.a11y_enabled)
         } else {
-            "⚠ Accessibility service is disabled"
+            getString(R.string.a11y_disabled)
         }
 
         binding.tvAccessibilityStatus.setTextColor(
-            getColor(if (isEnabled) R.color.status_green else R.color.status_red)
+            getColor(if (isEnabled) R.color.md_primary else R.color.md_error)
         )
 
-        // Show/hide the enable button based on status
-        binding.btnEnableAccessibility.visibility = if (isEnabled) View.GONE else View.VISIBLE
+        binding.btnEnableAccessibility.visibility =
+            if (isEnabled) View.GONE else View.VISIBLE
 
-        // Disable toggle if accessibility isn't granted
+        // Disable toggle if accessibility not granted
         binding.switchFocusMode.isEnabled = isEnabled
         if (!isEnabled) {
+            binding.switchFocusMode.setOnCheckedChangeListener(null)
             binding.switchFocusMode.isChecked = false
             PreferencesManager.setFocusModeEnabled(this, false)
+            binding.switchFocusMode.setOnCheckedChangeListener { _, checked ->
+                onFocusModeToggled(checked)
+            }
         }
     }
 
     private fun updateFocusToggleState() {
         val isEnabled = PreferencesManager.isFocusModeEnabled(this)
-        // Temporarily remove listener to avoid triggering onCheckedChangeListener
+
+        // Update switch without triggering listener
         binding.switchFocusMode.setOnCheckedChangeListener(null)
         binding.switchFocusMode.isChecked = isEnabled
         binding.switchFocusMode.setOnCheckedChangeListener { _, checked ->
             onFocusModeToggled(checked)
         }
 
-        updateStatusCard(isEnabled)
+        applyHeroState(isEnabled)
     }
 
-    private fun updateStatusCard(isActive: Boolean) {
-        binding.tvFocusStatus.text = if (isActive) {
-            "Focus mode is ON\nInstagram Reels & Explore are blocked"
+    /**
+     * Applies the full visual state to the hero card:
+     * - Title and subtitle text
+     * - Status dot drawable (filled = active, outline = inactive)
+     * - Subtle scale pulse animation when activating
+     */
+    private fun applyHeroState(isActive: Boolean) {
+        if (isActive) {
+            binding.tvHeroTitle.text = getString(R.string.status_active)
+            binding.tvFocusStatus.text = getString(R.string.status_active_sub)
+            binding.tvHeroStatusLabel.text = getString(R.string.status_active)
+            binding.ivStatusDot.setImageResource(R.drawable.ic_dot_active)
+            animateStatusDot(binding.ivStatusDot)
         } else {
-            "Focus mode is OFF\nToggle the switch above to start blocking"
+            binding.tvHeroTitle.text = getString(R.string.status_inactive)
+            binding.tvFocusStatus.text = getString(R.string.status_inactive_sub)
+            binding.tvHeroStatusLabel.text = getString(R.string.status_inactive)
+            binding.ivStatusDot.setImageResource(R.drawable.ic_dot_inactive)
         }
+    }
 
-        binding.cardStatus.setCardBackgroundColor(
-            getColor(if (isActive) R.color.card_active else R.color.card_inactive)
-        )
+    /**
+     * Pulses the status dot with a scale animation when focus mode activates.
+     * Gives satisfying tactile feedback without being distracting.
+     */
+    private fun animateStatusDot(view: View) {
+        ObjectAnimator.ofFloat(view, "scaleX", 1f, 1.6f, 1f).apply {
+            duration = 400
+            interpolator = AccelerateDecelerateInterpolator()
+            start()
+        }
+        ObjectAnimator.ofFloat(view, "scaleY", 1f, 1.6f, 1f).apply {
+            duration = 400
+            interpolator = AccelerateDecelerateInterpolator()
+            start()
+        }
     }
 
     // ─── Actions ──────────────────────────────────────────────────────────────
 
     private fun onFocusModeToggled(isEnabled: Boolean) {
         if (isEnabled && !AccessibilityUtils.isAccessibilityServiceEnabled(this)) {
-            // Prevent enabling without accessibility permission
+            // Revert switch without firing listener again
+            binding.switchFocusMode.setOnCheckedChangeListener(null)
             binding.switchFocusMode.isChecked = false
-            Snackbar.make(
-                binding.root,
-                "Please enable the Accessibility Service first",
-                Snackbar.LENGTH_LONG
-            ).setAction("Open Settings") {
+            binding.switchFocusMode.setOnCheckedChangeListener { _, checked ->
+                onFocusModeToggled(checked)
+            }
+
+            showSnackbar(
+                message = getString(R.string.focus_no_a11y),
+                actionLabel = getString(R.string.action_open_settings)
+            ) {
                 AccessibilityUtils.openAccessibilitySettings(this)
-            }.show()
+            }
             return
         }
 
@@ -143,12 +199,26 @@ class MainActivity : AppCompatActivity() {
 
         if (isEnabled) {
             FocusGuardForegroundService.start(this)
-            Snackbar.make(binding.root, "Focus mode activated 🎯", Snackbar.LENGTH_SHORT).show()
+            showSnackbar(getString(R.string.focus_on_toast))
         } else {
             FocusGuardForegroundService.stop(this)
-            Snackbar.make(binding.root, "Focus mode deactivated", Snackbar.LENGTH_SHORT).show()
+            showSnackbar(getString(R.string.focus_off_toast))
         }
 
-        updateStatusCard(isEnabled)
+        applyHeroState(isEnabled)
+    }
+
+    // ─── Helpers ──────────────────────────────────────────────────────────────
+
+    private fun showSnackbar(
+        message: String,
+        actionLabel: String? = null,
+        action: (() -> Unit)? = null
+    ) {
+        val snack = Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT)
+        if (actionLabel != null && action != null) {
+            snack.setAction(actionLabel) { action() }
+        }
+        snack.show()
     }
 }

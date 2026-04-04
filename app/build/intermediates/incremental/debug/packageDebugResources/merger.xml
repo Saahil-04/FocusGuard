@@ -1,10 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/workspaces/FocusGuard/app/src/main/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main" generated-set="main$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/workspaces/FocusGuard/app/src/main/res"><file path="/workspaces/FocusGuard/app/src/main/res/values/strings.xml" qualifiers=""><string name="app_name">FocusGuard</string><string name="accessibility_service_label">FocusGuard Focus Service</string><string name="accessibility_service_description">FocusGuard monitors Instagram to redirect you away from Reels and Explore, keeping your experience focused on Direct Messages.</string><string name="blocked_sections_title">Blocked Sections</string></file><file path="/workspaces/FocusGuard/app/src/main/res/values/themes.xml" qualifiers=""><style name="Theme.FocusGuard" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <item name="android:statusBarColor">@color/purple_700</item>
-    </style></file><file path="/workspaces/FocusGuard/app/src/main/res/values/colors.xml" qualifiers=""><color name="purple_200">#FFBB86FC</color><color name="purple_500">#FF6200EE</color><color name="purple_700">#FF3700B3</color><color name="teal_200">#FF03DAC5</color><color name="teal_700">#FF018786</color><color name="black">#FF000000</color><color name="white">#FFFFFFFF</color><color name="background">#FFF5F5F5</color><color name="card_surface">#FFFFFFFF</color><color name="card_active">#FFE8F5E9</color><color name="card_inactive">#FFF3E5F5</color><color name="text_primary">#FF1A1A2E</color><color name="text_secondary">#FF6B6B80</color><color name="status_green">#FF2E7D32</color><color name="status_red">#FFC62828</color><color name="divider">#FFE0E0E0</color></file><file name="ic_launcher" path="/workspaces/FocusGuard/app/src/main/res/mipmap-hdpi/ic_launcher.xml" qualifiers="hdpi-v4" type="mipmap"/><file name="activity_main" path="/workspaces/FocusGuard/app/src/main/res/layout/activity_main.xml" qualifiers="" type="layout"/><file name="activity_blocked_sections" path="/workspaces/FocusGuard/app/src/main/res/layout/activity_blocked_sections.xml" qualifiers="" type="layout"/><file name="item_app_config" path="/workspaces/FocusGuard/app/src/main/res/layout/item_app_config.xml" qualifiers="" type="layout"/><file name="item_blocked_section" path="/workspaces/FocusGuard/app/src/main/res/layout/item_blocked_section.xml" qualifiers="" type="layout"/><file name="accessibility_service_config" path="/workspaces/FocusGuard/app/src/main/res/xml/accessibility_service_config.xml" qualifiers="" type="xml"/><file name="ic_launcher_round" path="/workspaces/FocusGuard/app/src/main/res/mipmap-hdpi/ic_launcher_round.xml" qualifiers="hdpi-v4" type="mipmap"/></source></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/workspaces/FocusGuard/app/src/debug/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug" generated-set="debug$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/workspaces/FocusGuard/app/src/debug/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/workspaces/FocusGuard/app/build/generated/res/resValues/debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated" generated-set="generated$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/workspaces/FocusGuard/app/build/generated/res/resValues/debug"/></dataSet><mergedItems/></merger>
+<merger version="3" xmlns:ns1="http://schemas.android.com/tools"><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/workspaces/FocusGuard/app/src/main/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main" generated-set="main$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/workspaces/FocusGuard/app/src/main/res"><file name="switch_track_color" path="/workspaces/FocusGuard/app/src/main/res/color/switch_track_color.xml" qualifiers="" type="color"/><file name="switch_thumb_color" path="/workspaces/FocusGuard/app/src/main/res/color/switch_thumb_color.xml" qualifiers="" type="color"/><file path="/workspaces/FocusGuard/app/src/main/res/values-night/themes.xml" qualifiers="night-v8"><style name="Theme.FocusGuard" parent="Theme.Material3.DayNight.NoActionBar">
+
+        <item name="colorPrimary">@color/md_primary_dark</item>
+        <item name="colorOnPrimary">@color/md_on_primary_dark</item>
+        <item name="colorPrimaryContainer">@color/md_primary_container_dark</item>
+        <item name="colorOnPrimaryContainer">@color/md_on_primary_container_dark</item>
+
+        <item name="colorSecondary">@color/md_secondary_dark</item>
+        <item name="colorOnSecondary">@color/md_on_secondary_dark</item>
+        <item name="colorSecondaryContainer">@color/md_secondary_container_dark</item>
+        <item name="colorOnSecondaryContainer">@color/md_on_secondary_container_dark</item>
+
+        <item name="android:colorBackground">@color/md_background_dark</item>
+        <item name="colorOnBackground">@color/md_on_background_dark</item>
+        <item name="colorSurface">@color/md_surface_dark</item>
+        <item name="colorOnSurface">@color/md_on_surface_dark</item>
+        <item name="colorSurfaceVariant">@color/md_surface_variant_dark</item>
+        <item name="colorOnSurfaceVariant">@color/md_on_surface_variant_dark</item>
+        <item name="colorOutline">@color/md_outline_dark</item>
+        <item name="colorOutlineVariant">@color/md_outline_variant_dark</item>
+
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar" ns1:targetApi="23">false</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:enforceNavigationBarContrast" ns1:targetApi="29">false</item>
+
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.FocusGuard.Medium</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.FocusGuard.Large</item>
+
+        <item name="switchStyle">@style/Widget.FocusGuard.Switch</item>
+        <item name="materialCardViewStyle">@style/Widget.FocusGuard.Card</item>
+        <item name="materialButtonStyle">@style/Widget.FocusGuard.Button</item>
+        <item name="materialButtonOutlinedStyle">@style/Widget.FocusGuard.Button.Outlined</item>
+    </style></file><file path="/workspaces/FocusGuard/app/src/main/res/values/strings.xml" qualifiers=""><string name="app_name">FocusGuard</string><string name="app_tagline">Reclaim your focus</string><string name="accessibility_service_label">FocusGuard Focus Service</string><string name="accessibility_service_description">FocusGuard monitors Instagram to redirect you away from Reels and Explore, keeping your experience focused on Direct Messages.</string><string name="blocked_sections_title">Blocked Sections</string><string name="status_active">Blocking active</string><string name="status_inactive">Blocking paused</string><string name="status_active_sub">Reels &amp; Explore are blocked</string><string name="status_inactive_sub">Toggle to start protecting your focus</string><string name="a11y_enabled">Accessibility service is active</string><string name="a11y_disabled">Accessibility service is disabled</string><string name="a11y_enable_cta">Enable in Settings</string><string name="a11y_guide">Find \'FocusGuard\' and enable it</string><string name="a11y_section_label">Accessibility Service</string><string name="focus_mode_label">Focus Mode</string><string name="focus_mode_sub">Block Reels and Explore</string><string name="focus_no_a11y">Enable the Accessibility Service first</string><string name="focus_on_toast">Focus mode activated</string><string name="focus_off_toast">Focus mode paused</string><string name="action_manage_sections">Manage blocked sections</string><string name="action_battery">Disable battery optimization</string><string name="action_open_settings">Open Settings</string><string name="battery_guide">Select \'Don\'t optimize\' to prevent service interruption</string><string name="sections_headline">Configure Blocking</string><string name="sections_sub">Changes take effect immediately</string><string name="sections_keywords_prefix">Triggers: </string><string name="step_1">Step 1 — Grant accessibility permission</string><string name="step_2">Step 2 — Enable Focus Mode</string><string name="step_3">Step 3 — Set blocking rules</string></file><file path="/workspaces/FocusGuard/app/src/main/res/values/theme_overlays.xml" qualifiers=""><style name="ThemeOverlay.SwitchLight" parent="ThemeOverlay.Material3">
+        <item name="colorPrimary">#FFFFFF</item>
+        <item name="colorSurfaceVariant">#66FFFFFF</item>
+        <item name="colorOutline">#99FFFFFF</item>
+    </style></file><file path="/workspaces/FocusGuard/app/src/main/res/values/themes.xml" qualifiers=""><style name="Theme.FocusGuard" parent="Theme.Material3.DayNight.NoActionBar">
+
+        
+        <item name="colorPrimary">@color/md_primary</item>
+        <item name="colorOnPrimary">@color/md_on_primary</item>
+        <item name="colorPrimaryContainer">@color/md_primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/md_on_primary_container</item>
+
+        
+        <item name="colorSecondary">@color/md_secondary</item>
+        <item name="colorOnSecondary">@color/md_on_secondary</item>
+        <item name="colorSecondaryContainer">@color/md_secondary_container</item>
+        <item name="colorOnSecondaryContainer">@color/md_on_secondary_container</item>
+
+        
+        <item name="colorTertiary">@color/md_tertiary</item>
+        <item name="colorOnTertiary">@color/md_on_tertiary</item>
+        <item name="colorTertiaryContainer">@color/md_tertiary_container</item>
+        <item name="colorOnTertiaryContainer">@color/md_on_tertiary_container</item>
+
+        
+        <item name="colorError">@color/md_error</item>
+        <item name="colorOnError">@color/md_on_error</item>
+        <item name="colorErrorContainer">@color/md_error_container</item>
+        <item name="colorOnErrorContainer">@color/md_on_error_container</item>
+
+        
+        <item name="android:colorBackground">@color/md_background</item>
+        <item name="colorOnBackground">@color/md_on_background</item>
+        <item name="colorSurface">@color/md_surface</item>
+        <item name="colorOnSurface">@color/md_on_surface</item>
+        <item name="colorSurfaceVariant">@color/md_surface_variant</item>
+        <item name="colorOnSurfaceVariant">@color/md_on_surface_variant</item>
+
+        
+        <item name="colorOutline">@color/md_outline</item>
+        <item name="colorOutlineVariant">@color/md_outline_variant</item>
+
+        
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar" ns1:targetApi="23">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:enforceNavigationBarContrast" ns1:targetApi="29">false</item>
+
+        
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.FocusGuard.Medium</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.FocusGuard.Large</item>
+
+        
+        <item name="textAppearanceDisplayLarge">@style/TextAppearance.FocusGuard.DisplayLarge</item>
+        <item name="textAppearanceHeadlineLarge">@style/TextAppearance.FocusGuard.HeadlineLarge</item>
+        <item name="textAppearanceHeadlineMedium">@style/TextAppearance.FocusGuard.HeadlineMedium</item>
+        <item name="textAppearanceTitleLarge">@style/TextAppearance.FocusGuard.TitleLarge</item>
+        <item name="textAppearanceTitleMedium">@style/TextAppearance.FocusGuard.TitleMedium</item>
+        <item name="textAppearanceBodyLarge">@style/TextAppearance.FocusGuard.BodyLarge</item>
+        <item name="textAppearanceBodyMedium">@style/TextAppearance.FocusGuard.BodyMedium</item>
+        <item name="textAppearanceLabelLarge">@style/TextAppearance.FocusGuard.LabelLarge</item>
+        <item name="textAppearanceLabelMedium">@style/TextAppearance.FocusGuard.LabelMedium</item>
+        <item name="textAppearanceLabelSmall">@style/TextAppearance.FocusGuard.LabelSmall</item>
+
+        
+        <item name="switchStyle">@style/Widget.FocusGuard.Switch</item>
+
+        
+        <item name="materialCardViewStyle">@style/Widget.FocusGuard.Card</item>
+
+        
+        <item name="materialButtonStyle">@style/Widget.FocusGuard.Button</item>
+        <item name="materialButtonOutlinedStyle">@style/Widget.FocusGuard.Button.Outlined</item>
+    </style><style name="Theme.FocusGuard.Splash" parent="Theme.FocusGuard">
+        <item name="android:windowBackground">@color/md_background</item>
+    </style><style name="ShapeAppearance.FocusGuard.Medium" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style><style name="ShapeAppearance.FocusGuard.Large" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">24dp</item>
+    </style><style name="TextAppearance.FocusGuard.DisplayLarge" parent="TextAppearance.Material3.DisplayLarge">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">57sp</item>
+        <item name="android:letterSpacing">-0.025</item>
+    </style><style name="TextAppearance.FocusGuard.HeadlineLarge" parent="TextAppearance.Material3.HeadlineLarge">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:letterSpacing">-0.01</item>
+    </style><style name="TextAppearance.FocusGuard.HeadlineMedium" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style><style name="TextAppearance.FocusGuard.TitleLarge" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">22sp</item>
+    </style><style name="TextAppearance.FocusGuard.TitleMedium" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">0.015</item>
+    </style><style name="TextAppearance.FocusGuard.BodyLarge" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineHeight" ns1:targetApi="28">24sp</item>
+    </style><style name="TextAppearance.FocusGuard.BodyMedium" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:lineHeight" ns1:targetApi="28">20sp</item>
+    </style><style name="TextAppearance.FocusGuard.LabelLarge" parent="TextAppearance.Material3.LabelLarge">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.01</item>
+    </style><style name="TextAppearance.FocusGuard.LabelMedium" parent="TextAppearance.Material3.LabelMedium">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0.05</item>
+    </style><style name="TextAppearance.FocusGuard.LabelSmall" parent="TextAppearance.Material3.LabelSmall">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:letterSpacing">0.05</item>
+    </style><style name="Widget.FocusGuard.Card" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardCornerRadius">20dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="strokeWidth">0dp</item>
+    </style><style name="Widget.FocusGuard.Card.Outlined" parent="Widget.Material3.CardView.Outlined">
+        <item name="cardCornerRadius">20dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="strokeColor">@color/md_outline_variant</item>
+    </style><style name="Widget.FocusGuard.Switch" parent="Widget.Material3.CompoundButton.Switch">
+        <item name="thumbTint">@color/switch_thumb_color</item>
+        <item name="trackTint">@color/switch_track_color</item>
+    </style><style name="Widget.FocusGuard.Button" parent="Widget.Material3.Button">
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="cornerRadius">14dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.FocusGuard.LabelLarge</item>
+    </style><style name="Widget.FocusGuard.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="cornerRadius">14dp</item>
+        <item name="strokeColor">@color/md_outline_variant</item>
+        <item name="android:textAppearance">@style/TextAppearance.FocusGuard.LabelLarge</item>
+    </style><style name="Widget.FocusGuard.Button.Tonal" parent="Widget.Material3.Button.TonalButton">
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="cornerRadius">14dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.FocusGuard.LabelLarge</item>
+    </style></file><file path="/workspaces/FocusGuard/app/src/main/res/values/colors.xml" qualifiers=""><color name="md_primary">#1A9E8F</color><color name="md_on_primary">#FFFFFF</color><color name="md_primary_container">#A8F0E6</color><color name="md_on_primary_container">#002019</color><color name="md_secondary">#4CAF6F</color><color name="md_on_secondary">#FFFFFF</color><color name="md_secondary_container">#CCEFDA</color><color name="md_on_secondary_container">#00210F</color><color name="md_tertiary">#00897B</color><color name="md_on_tertiary">#FFFFFF</color><color name="md_tertiary_container">#B2DFDB</color><color name="md_on_tertiary_container">#002925</color><color name="md_error">#BA1A1A</color><color name="md_on_error">#FFFFFF</color><color name="md_error_container">#FFDAD6</color><color name="md_on_error_container">#410002</color><color name="md_background">#F4FBF9</color><color name="md_on_background">#161D1B</color><color name="md_surface">#F4FBF9</color><color name="md_on_surface">#161D1B</color><color name="md_surface_variant">#DBE5E2</color><color name="md_on_surface_variant">#3F4947</color><color name="md_surface_container_low">#EEF5F3</color><color name="md_surface_container">#E8EFED</color><color name="md_surface_container_high">#E3EAE7</color><color name="md_outline">#6F7977</color><color name="md_outline_variant">#BFC9C6</color><color name="status_active">#1A9E8F</color><color name="status_inactive">#6F7977</color><color name="status_warning">#E65100</color><color name="card_active_bg">#E0F7F4</color><color name="card_inactive_bg">#EEF5F3</color><color name="ripple_primary">#261A9E8F</color><color name="scrim">#661A9E8F</color><color name="md_primary_dark">#79D5C8</color><color name="md_on_primary_dark">#00373D</color><color name="md_primary_container_dark">#005049</color><color name="md_on_primary_container_dark">#A8F0E6</color><color name="md_secondary_dark">#91D9A9</color><color name="md_on_secondary_dark">#003920</color><color name="md_secondary_container_dark">#1B5235</color><color name="md_on_secondary_container_dark">#CCEFDA</color><color name="md_background_dark">#0E1513</color><color name="md_on_background_dark">#DCE4E1</color><color name="md_surface_dark">#0E1513</color><color name="md_on_surface_dark">#DCE4E1</color><color name="md_surface_variant_dark">#3F4947</color><color name="md_on_surface_variant_dark">#BFC9C6</color><color name="md_surface_container_low_dark">#161D1B</color><color name="md_surface_container_dark">#1A2220</color><color name="md_surface_container_high_dark">#252C2A</color><color name="md_outline_dark">#899390</color><color name="md_outline_variant_dark">#3F4947</color><color name="card_active_bg_dark">#003730</color><color name="card_inactive_bg_dark">#1A2220</color><color name="purple_700">#FF3700B3</color><color name="teal_700">#FF018786</color><color name="purple_200">#FFBB86FC</color><color name="purple_500">#FF6200EE</color><color name="teal_200">#FF03DAC5</color></file><file name="ic_shield" path="/workspaces/FocusGuard/app/src/main/res/drawable/ic_shield.xml" qualifiers="" type="drawable"/><file name="switch_track_color" path="/workspaces/FocusGuard/app/src/main/res/drawable/switch_track_color.xml" qualifiers="" type="drawable"/><file name="ic_dot_active" path="/workspaces/FocusGuard/app/src/main/res/drawable/ic_dot_active.xml" qualifiers="" type="drawable"/><file name="ic_arrow_back" path="/workspaces/FocusGuard/app/src/main/res/drawable/ic_arrow_back.xml" qualifiers="" type="drawable"/><file name="ic_dot_inactive" path="/workspaces/FocusGuard/app/src/main/res/drawable/ic_dot_inactive.xml" qualifiers="" type="drawable"/><file name="ic_app_placeholder" path="/workspaces/FocusGuard/app/src/main/res/drawable/ic_app_placeholder.xml" qualifiers="" type="drawable"/><file name="ic_accessibility" path="/workspaces/FocusGuard/app/src/main/res/drawable/ic_accessibility.xml" qualifiers="" type="drawable"/><file name="bg_hero_gradient" path="/workspaces/FocusGuard/app/src/main/res/drawable/bg_hero_gradient.xml" qualifiers="" type="drawable"/><file name="ic_chevron_right" path="/workspaces/FocusGuard/app/src/main/res/drawable/ic_chevron_right.xml" qualifiers="" type="drawable"/><file name="bg_app_icon_circle" path="/workspaces/FocusGuard/app/src/main/res/drawable/bg_app_icon_circle.xml" qualifiers="" type="drawable"/><file name="ic_battery" path="/workspaces/FocusGuard/app/src/main/res/drawable/ic_battery.xml" qualifiers="" type="drawable"/><file name="ic_tune" path="/workspaces/FocusGuard/app/src/main/res/drawable/ic_tune.xml" qualifiers="" type="drawable"/><file name="ic_theme_toggle" path="/workspaces/FocusGuard/app/src/main/res/drawable/ic_theme_toggle.xml" qualifiers="" type="drawable"/><file name="ripple_card" path="/workspaces/FocusGuard/app/src/main/res/drawable/ripple_card.xml" qualifiers="" type="drawable"/><file name="ic_launcher_round" path="/workspaces/FocusGuard/app/src/main/res/mipmap-hdpi/ic_launcher_round.xml" qualifiers="hdpi-v4" type="mipmap"/><file name="ic_launcher" path="/workspaces/FocusGuard/app/src/main/res/mipmap-hdpi/ic_launcher.xml" qualifiers="hdpi-v4" type="mipmap"/><file name="activity_main" path="/workspaces/FocusGuard/app/src/main/res/layout/activity_main.xml" qualifiers="" type="layout"/><file name="activity_blocked_sections" path="/workspaces/FocusGuard/app/src/main/res/layout/activity_blocked_sections.xml" qualifiers="" type="layout"/><file name="item_app_config" path="/workspaces/FocusGuard/app/src/main/res/layout/item_app_config.xml" qualifiers="" type="layout"/><file name="item_blocked_section" path="/workspaces/FocusGuard/app/src/main/res/layout/item_blocked_section.xml" qualifiers="" type="layout"/><file name="accessibility_service_config" path="/workspaces/FocusGuard/app/src/main/res/xml/accessibility_service_config.xml" qualifiers="" type="xml"/></source></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/workspaces/FocusGuard/app/src/debug/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug" generated-set="debug$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/workspaces/FocusGuard/app/src/debug/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/workspaces/FocusGuard/app/build/generated/res/resValues/debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated" generated-set="generated$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/workspaces/FocusGuard/app/build/generated/res/resValues/debug"/></dataSet><mergedItems/></merger>

@@ -4,9 +4,11 @@ package com.focusguard.app.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
@@ -17,20 +19,28 @@ import java.lang.String;
 
 public final class ActivityBlockedSectionsBinding implements ViewBinding {
   @NonNull
-  private final LinearLayout rootView;
+  private final CoordinatorLayout rootView;
+
+  @NonNull
+  public final ImageButton btnBack;
 
   @NonNull
   public final RecyclerView rvApps;
 
-  private ActivityBlockedSectionsBinding(@NonNull LinearLayout rootView,
-      @NonNull RecyclerView rvApps) {
+  @NonNull
+  public final LinearLayout topBar;
+
+  private ActivityBlockedSectionsBinding(@NonNull CoordinatorLayout rootView,
+      @NonNull ImageButton btnBack, @NonNull RecyclerView rvApps, @NonNull LinearLayout topBar) {
     this.rootView = rootView;
+    this.btnBack = btnBack;
     this.rvApps = rvApps;
+    this.topBar = topBar;
   }
 
   @Override
   @NonNull
-  public LinearLayout getRoot() {
+  public CoordinatorLayout getRoot() {
     return rootView;
   }
 
@@ -55,13 +65,26 @@ public final class ActivityBlockedSectionsBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.btnBack;
+      ImageButton btnBack = ViewBindings.findChildViewById(rootView, id);
+      if (btnBack == null) {
+        break missingId;
+      }
+
       id = R.id.rvApps;
       RecyclerView rvApps = ViewBindings.findChildViewById(rootView, id);
       if (rvApps == null) {
         break missingId;
       }
 
-      return new ActivityBlockedSectionsBinding((LinearLayout) rootView, rvApps);
+      id = R.id.topBar;
+      LinearLayout topBar = ViewBindings.findChildViewById(rootView, id);
+      if (topBar == null) {
+        break missingId;
+      }
+
+      return new ActivityBlockedSectionsBinding((CoordinatorLayout) rootView, btnBack, rvApps,
+          topBar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

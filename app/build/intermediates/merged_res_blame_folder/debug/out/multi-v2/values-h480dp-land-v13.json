@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.focusguard.app-mergeDebugResources-30:/values-h480dp-land-v13/values-h480dp-land-v13.xml",
+            "outputFile": "com.focusguard.app-mergeDebugResources-31:/values-h480dp-land-v13/values-h480dp-land-v13.xml",
             "map": [
                 {
-                    "source": "/home/codespace/.gradle/caches/8.14/transforms/d502765e9583a2a613262cb02a7520ca/transformed/material-1.11.0/res/values-h480dp-land-v13/values-h480dp-land-v13.xml",
+                    "source": "/home/codespace/.gradle/caches/8.14/transforms/59115fb2ea88f44edb44ccede7c6439c/transformed/material-1.12.0/res/values-h480dp-land-v13/values-h480dp-land-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",

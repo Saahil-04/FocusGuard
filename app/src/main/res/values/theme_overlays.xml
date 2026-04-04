@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Used on the hero card's dark gradient background so the switch
+         thumb/track render in white/light tones instead of the surface color -->
+    <style name="ThemeOverlay.SwitchLight" parent="ThemeOverlay.Material3">
+        <item name="colorPrimary">#FFFFFF</item>
+        <item name="colorSurfaceVariant">#66FFFFFF</item>
+        <item name="colorOutline">#99FFFFFF</item>
+    </style>
+</resources>

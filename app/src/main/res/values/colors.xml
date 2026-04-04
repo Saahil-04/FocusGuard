@@ -1,22 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Brand -->
-    <color name="purple_200">#FFBB86FC</color>
+    <!-- ── Brand Palette ────────────────────────────────────────────────── -->
+    <!-- Primary: Turquoise -->
+    <color name="md_primary">#1A9E8F</color>
+    <color name="md_on_primary">#FFFFFF</color>
+    <color name="md_primary_container">#A8F0E6</color>
+    <color name="md_on_primary_container">#002019</color>
+
+    <!-- Secondary: Light Green -->
+    <color name="md_secondary">#4CAF6F</color>
+    <color name="md_on_secondary">#FFFFFF</color>
+    <color name="md_secondary_container">#CCEFDA</color>
+    <color name="md_on_secondary_container">#00210F</color>
+
+    <!-- Tertiary: Soft teal accent -->
+    <color name="md_tertiary">#00897B</color>
+    <color name="md_on_tertiary">#FFFFFF</color>
+    <color name="md_tertiary_container">#B2DFDB</color>
+    <color name="md_on_tertiary_container">#002925</color>
+
+    <!-- Error -->
+    <color name="md_error">#BA1A1A</color>
+    <color name="md_on_error">#FFFFFF</color>
+    <color name="md_error_container">#FFDAD6</color>
+    <color name="md_on_error_container">#410002</color>
+
+    <!-- ── Light Surface System ──────────────────────────────────────────── -->
+    <color name="md_background">#F4FBF9</color>
+    <color name="md_on_background">#161D1B</color>
+    <color name="md_surface">#F4FBF9</color>
+    <color name="md_on_surface">#161D1B</color>
+    <color name="md_surface_variant">#DBE5E2</color>
+    <color name="md_on_surface_variant">#3F4947</color>
+    <color name="md_surface_container_low">#EEF5F3</color>
+    <color name="md_surface_container">#E8EFED</color>
+    <color name="md_surface_container_high">#E3EAE7</color>
+    <color name="md_outline">#6F7977</color>
+    <color name="md_outline_variant">#BFC9C6</color>
+
+    <!-- ── Semantic / UI ──────────────────────────────────────────────────── -->
+    <color name="status_active">#1A9E8F</color>
+    <color name="status_inactive">#6F7977</color>
+    <color name="status_warning">#E65100</color>
+    <color name="card_active_bg">#E0F7F4</color>
+    <color name="card_inactive_bg">#EEF5F3</color>
+    <color name="ripple_primary">#261A9E8F</color>
+    <color name="scrim">#661A9E8F</color>
+
+    <!-- ── Dark raw values (used in night/colors.xml via theme refs) ──── -->
+    <color name="md_primary_dark">#79D5C8</color>
+    <color name="md_on_primary_dark">#00373D</color>
+    <color name="md_primary_container_dark">#005049</color>
+    <color name="md_on_primary_container_dark">#A8F0E6</color>
+    <color name="md_secondary_dark">#91D9A9</color>
+    <color name="md_on_secondary_dark">#003920</color>
+    <color name="md_secondary_container_dark">#1B5235</color>
+    <color name="md_on_secondary_container_dark">#CCEFDA</color>
+    <color name="md_background_dark">#0E1513</color>
+    <color name="md_on_background_dark">#DCE4E1</color>
+    <color name="md_surface_dark">#0E1513</color>
+    <color name="md_on_surface_dark">#DCE4E1</color>
+    <color name="md_surface_variant_dark">#3F4947</color>
+    <color name="md_on_surface_variant_dark">#BFC9C6</color>
+    <color name="md_surface_container_low_dark">#161D1B</color>
+    <color name="md_surface_container_dark">#1A2220</color>
+    <color name="md_surface_container_high_dark">#252C2A</color>
+    <color name="md_outline_dark">#899390</color>
+    <color name="md_outline_variant_dark">#3F4947</color>
+    <color name="card_active_bg_dark">#003730</color>
+    <color name="card_inactive_bg_dark">#1A2220</color>
+
     <color name="purple_500">#FF6200EE</color>
+    <color name="purple_200">#FFBB86FC</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-
-    <!-- UI -->
-    <color name="background">#FFF5F5F5</color>
-    <color name="card_surface">#FFFFFFFF</color>
-    <color name="card_active">#FFE8F5E9</color>
-    <color name="card_inactive">#FFF3E5F5</color>
-    <color name="text_primary">#FF1A1A2E</color>
-    <color name="text_secondary">#FF6B6B80</color>
-    <color name="status_green">#FF2E7D32</color>
-    <color name="status_red">#FFC62828</color>
-    <color name="divider">#FFE0E0E0</color>
 </resources>

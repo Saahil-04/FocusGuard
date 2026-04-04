@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.focusguard.app-mergeDebugResources-30:/values-v24/values-v24.xml",
+            "outputFile": "com.focusguard.app-mergeDebugResources-31:/values-v24/values-v24.xml",
             "map": [
                 {
                     "source": "/home/codespace/.gradle/caches/8.14/transforms/8e616b6fb7350d37d8fe9d5b54bb068d/transformed/appcompat-1.6.1/res/values-v24/values-v24.xml",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "/home/codespace/.gradle/caches/8.14/transforms/d502765e9583a2a613262cb02a7520ca/transformed/material-1.11.0/res/values-v24/values-v24.xml",
+                    "source": "/home/codespace/.gradle/caches/8.14/transforms/59115fb2ea88f44edb44ccede7c6439c/transformed/material-1.12.0/res/values-v24/values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,9,12,15",
                         "startColumns": "4,4,4,4,4,4,4,4",

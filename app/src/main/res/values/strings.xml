@@ -1,6 +1,43 @@
 <resources>
     <string name="app_name">FocusGuard</string>
+    <string name="app_tagline">Reclaim your focus</string>
     <string name="accessibility_service_label">FocusGuard Focus Service</string>
     <string name="accessibility_service_description">FocusGuard monitors Instagram to redirect you away from Reels and Explore, keeping your experience focused on Direct Messages.</string>
     <string name="blocked_sections_title">Blocked Sections</string>
+
+    <!-- Status -->
+    <string name="status_active">Blocking active</string>
+    <string name="status_inactive">Blocking paused</string>
+    <string name="status_active_sub">Reels &amp; Explore are blocked</string>
+    <string name="status_inactive_sub">Toggle to start protecting your focus</string>
+
+    <!-- Accessibility -->
+    <string name="a11y_enabled">Accessibility service is active</string>
+    <string name="a11y_disabled">Accessibility service is disabled</string>
+    <string name="a11y_enable_cta">Enable in Settings</string>
+    <string name="a11y_guide">Find \'FocusGuard\' and enable it</string>
+    <string name="a11y_section_label">Accessibility Service</string>
+
+    <!-- Focus mode -->
+    <string name="focus_mode_label">Focus Mode</string>
+    <string name="focus_mode_sub">Block Reels and Explore</string>
+    <string name="focus_no_a11y">Enable the Accessibility Service first</string>
+    <string name="focus_on_toast">Focus mode activated</string>
+    <string name="focus_off_toast">Focus mode paused</string>
+
+    <!-- Actions -->
+    <string name="action_manage_sections">Manage blocked sections</string>
+    <string name="action_battery">Disable battery optimization</string>
+    <string name="action_open_settings">Open Settings</string>
+    <string name="battery_guide">Select \'Don\'t optimize\' to prevent service interruption</string>
+
+    <!-- Blocked sections screen -->
+    <string name="sections_headline">Configure Blocking</string>
+    <string name="sections_sub">Changes take effect immediately</string>
+    <string name="sections_keywords_prefix">Triggers: </string>
+
+    <!-- Onboarding steps -->
+    <string name="step_1">Step 1 — Grant accessibility permission</string>
+    <string name="step_2">Step 2 — Enable Focus Mode</string>
+    <string name="step_3">Step 3 — Set blocking rules</string>
 </resources>

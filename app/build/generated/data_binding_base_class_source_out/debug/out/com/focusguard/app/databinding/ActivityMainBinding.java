@@ -4,10 +4,12 @@ package com.focusguard.app.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ScrollView;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.focusguard.app.R;
@@ -20,19 +22,31 @@ import java.lang.String;
 
 public final class ActivityMainBinding implements ViewBinding {
   @NonNull
-  private final ScrollView rootView;
-
-  @NonNull
-  public final MaterialButton btnBatteryOptimization;
+  private final CoordinatorLayout rootView;
 
   @NonNull
   public final MaterialButton btnEnableAccessibility;
 
   @NonNull
-  public final MaterialButton btnManageSections;
+  public final ImageButton btnThemeToggle;
 
   @NonNull
-  public final MaterialCardView cardStatus;
+  public final MaterialCardView cardAccessibility;
+
+  @NonNull
+  public final MaterialCardView cardBattery;
+
+  @NonNull
+  public final MaterialCardView cardHero;
+
+  @NonNull
+  public final MaterialCardView cardManageSections;
+
+  @NonNull
+  public final ImageView ivAppIcon;
+
+  @NonNull
+  public final ImageView ivStatusDot;
 
   @NonNull
   public final SwitchMaterial switchFocusMode;
@@ -43,24 +57,39 @@ public final class ActivityMainBinding implements ViewBinding {
   @NonNull
   public final TextView tvFocusStatus;
 
-  private ActivityMainBinding(@NonNull ScrollView rootView,
-      @NonNull MaterialButton btnBatteryOptimization,
-      @NonNull MaterialButton btnEnableAccessibility, @NonNull MaterialButton btnManageSections,
-      @NonNull MaterialCardView cardStatus, @NonNull SwitchMaterial switchFocusMode,
-      @NonNull TextView tvAccessibilityStatus, @NonNull TextView tvFocusStatus) {
+  @NonNull
+  public final TextView tvHeroStatusLabel;
+
+  @NonNull
+  public final TextView tvHeroTitle;
+
+  private ActivityMainBinding(@NonNull CoordinatorLayout rootView,
+      @NonNull MaterialButton btnEnableAccessibility, @NonNull ImageButton btnThemeToggle,
+      @NonNull MaterialCardView cardAccessibility, @NonNull MaterialCardView cardBattery,
+      @NonNull MaterialCardView cardHero, @NonNull MaterialCardView cardManageSections,
+      @NonNull ImageView ivAppIcon, @NonNull ImageView ivStatusDot,
+      @NonNull SwitchMaterial switchFocusMode, @NonNull TextView tvAccessibilityStatus,
+      @NonNull TextView tvFocusStatus, @NonNull TextView tvHeroStatusLabel,
+      @NonNull TextView tvHeroTitle) {
     this.rootView = rootView;
-    this.btnBatteryOptimization = btnBatteryOptimization;
     this.btnEnableAccessibility = btnEnableAccessibility;
-    this.btnManageSections = btnManageSections;
-    this.cardStatus = cardStatus;
+    this.btnThemeToggle = btnThemeToggle;
+    this.cardAccessibility = cardAccessibility;
+    this.cardBattery = cardBattery;
+    this.cardHero = cardHero;
+    this.cardManageSections = cardManageSections;
+    this.ivAppIcon = ivAppIcon;
+    this.ivStatusDot = ivStatusDot;
     this.switchFocusMode = switchFocusMode;
     this.tvAccessibilityStatus = tvAccessibilityStatus;
     this.tvFocusStatus = tvFocusStatus;
+    this.tvHeroStatusLabel = tvHeroStatusLabel;
+    this.tvHeroTitle = tvHeroTitle;
   }
 
   @Override
   @NonNull
-  public ScrollView getRoot() {
+  public CoordinatorLayout getRoot() {
     return rootView;
   }
 
@@ -85,27 +114,51 @@ public final class ActivityMainBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.btnBatteryOptimization;
-      MaterialButton btnBatteryOptimization = ViewBindings.findChildViewById(rootView, id);
-      if (btnBatteryOptimization == null) {
-        break missingId;
-      }
-
       id = R.id.btnEnableAccessibility;
       MaterialButton btnEnableAccessibility = ViewBindings.findChildViewById(rootView, id);
       if (btnEnableAccessibility == null) {
         break missingId;
       }
 
-      id = R.id.btnManageSections;
-      MaterialButton btnManageSections = ViewBindings.findChildViewById(rootView, id);
-      if (btnManageSections == null) {
+      id = R.id.btnThemeToggle;
+      ImageButton btnThemeToggle = ViewBindings.findChildViewById(rootView, id);
+      if (btnThemeToggle == null) {
         break missingId;
       }
 
-      id = R.id.cardStatus;
-      MaterialCardView cardStatus = ViewBindings.findChildViewById(rootView, id);
-      if (cardStatus == null) {
+      id = R.id.cardAccessibility;
+      MaterialCardView cardAccessibility = ViewBindings.findChildViewById(rootView, id);
+      if (cardAccessibility == null) {
+        break missingId;
+      }
+
+      id = R.id.cardBattery;
+      MaterialCardView cardBattery = ViewBindings.findChildViewById(rootView, id);
+      if (cardBattery == null) {
+        break missingId;
+      }
+
+      id = R.id.cardHero;
+      MaterialCardView cardHero = ViewBindings.findChildViewById(rootView, id);
+      if (cardHero == null) {
+        break missingId;
+      }
+
+      id = R.id.cardManageSections;
+      MaterialCardView cardManageSections = ViewBindings.findChildViewById(rootView, id);
+      if (cardManageSections == null) {
+        break missingId;
+      }
+
+      id = R.id.ivAppIcon;
+      ImageView ivAppIcon = ViewBindings.findChildViewById(rootView, id);
+      if (ivAppIcon == null) {
+        break missingId;
+      }
+
+      id = R.id.ivStatusDot;
+      ImageView ivStatusDot = ViewBindings.findChildViewById(rootView, id);
+      if (ivStatusDot == null) {
         break missingId;
       }
 
@@ -127,9 +180,22 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityMainBinding((ScrollView) rootView, btnBatteryOptimization,
-          btnEnableAccessibility, btnManageSections, cardStatus, switchFocusMode,
-          tvAccessibilityStatus, tvFocusStatus);
+      id = R.id.tvHeroStatusLabel;
+      TextView tvHeroStatusLabel = ViewBindings.findChildViewById(rootView, id);
+      if (tvHeroStatusLabel == null) {
+        break missingId;
+      }
+
+      id = R.id.tvHeroTitle;
+      TextView tvHeroTitle = ViewBindings.findChildViewById(rootView, id);
+      if (tvHeroTitle == null) {
+        break missingId;
+      }
+
+      return new ActivityMainBinding((CoordinatorLayout) rootView, btnEnableAccessibility,
+          btnThemeToggle, cardAccessibility, cardBattery, cardHero, cardManageSections, ivAppIcon,
+          ivStatusDot, switchFocusMode, tvAccessibilityStatus, tvFocusStatus, tvHeroStatusLabel,
+          tvHeroTitle);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -1,11 +1,203 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Theme.FocusGuard" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <item name="android:statusBarColor">@color/purple_700</item>
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         Base app theme — extends Material3 DayNight (handles light/dark
+         automatically; we override in values-night/themes.xml for dark).
+         ══════════════════════════════════════════════════════════════════ -->
+    <style name="Theme.FocusGuard" parent="Theme.Material3.DayNight.NoActionBar">
+
+        <!-- Primary brand color: Turquoise -->
+        <item name="colorPrimary">@color/md_primary</item>
+        <item name="colorOnPrimary">@color/md_on_primary</item>
+        <item name="colorPrimaryContainer">@color/md_primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/md_on_primary_container</item>
+
+        <!-- Secondary: Light Green -->
+        <item name="colorSecondary">@color/md_secondary</item>
+        <item name="colorOnSecondary">@color/md_on_secondary</item>
+        <item name="colorSecondaryContainer">@color/md_secondary_container</item>
+        <item name="colorOnSecondaryContainer">@color/md_on_secondary_container</item>
+
+        <!-- Tertiary -->
+        <item name="colorTertiary">@color/md_tertiary</item>
+        <item name="colorOnTertiary">@color/md_on_tertiary</item>
+        <item name="colorTertiaryContainer">@color/md_tertiary_container</item>
+        <item name="colorOnTertiaryContainer">@color/md_on_tertiary_container</item>
+
+        <!-- Error -->
+        <item name="colorError">@color/md_error</item>
+        <item name="colorOnError">@color/md_on_error</item>
+        <item name="colorErrorContainer">@color/md_error_container</item>
+        <item name="colorOnErrorContainer">@color/md_on_error_container</item>
+
+        <!-- Surfaces -->
+        <item name="android:colorBackground">@color/md_background</item>
+        <item name="colorOnBackground">@color/md_on_background</item>
+        <item name="colorSurface">@color/md_surface</item>
+        <item name="colorOnSurface">@color/md_on_surface</item>
+        <item name="colorSurfaceVariant">@color/md_surface_variant</item>
+        <item name="colorOnSurfaceVariant">@color/md_on_surface_variant</item>
+
+        <!-- Outline -->
+        <item name="colorOutline">@color/md_outline</item>
+        <item name="colorOutlineVariant">@color/md_outline_variant</item>
+
+        <!-- System bar -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:enforceNavigationBarContrast" tools:targetApi="29">false</item>
+
+        <!-- Shape: slightly rounded for cards, fully for FABs -->
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.FocusGuard.Medium</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.FocusGuard.Large</item>
+
+        <!-- Typography -->
+        <item name="textAppearanceDisplayLarge">@style/TextAppearance.FocusGuard.DisplayLarge</item>
+        <item name="textAppearanceHeadlineLarge">@style/TextAppearance.FocusGuard.HeadlineLarge</item>
+        <item name="textAppearanceHeadlineMedium">@style/TextAppearance.FocusGuard.HeadlineMedium</item>
+        <item name="textAppearanceTitleLarge">@style/TextAppearance.FocusGuard.TitleLarge</item>
+        <item name="textAppearanceTitleMedium">@style/TextAppearance.FocusGuard.TitleMedium</item>
+        <item name="textAppearanceBodyLarge">@style/TextAppearance.FocusGuard.BodyLarge</item>
+        <item name="textAppearanceBodyMedium">@style/TextAppearance.FocusGuard.BodyMedium</item>
+        <item name="textAppearanceLabelLarge">@style/TextAppearance.FocusGuard.LabelLarge</item>
+        <item name="textAppearanceLabelMedium">@style/TextAppearance.FocusGuard.LabelMedium</item>
+        <item name="textAppearanceLabelSmall">@style/TextAppearance.FocusGuard.LabelSmall</item>
+
+        <!-- Switch style -->
+        <item name="switchStyle">@style/Widget.FocusGuard.Switch</item>
+
+        <!-- Card style -->
+        <item name="materialCardViewStyle">@style/Widget.FocusGuard.Card</item>
+
+        <!-- Button -->
+        <item name="materialButtonStyle">@style/Widget.FocusGuard.Button</item>
+        <item name="materialButtonOutlinedStyle">@style/Widget.FocusGuard.Button.Outlined</item>
     </style>
+
+    <!-- ── Splash theme (transparent status bar, full bleed) ──────────── -->
+    <style name="Theme.FocusGuard.Splash" parent="Theme.FocusGuard">
+        <item name="android:windowBackground">@color/md_background</item>
+    </style>
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         Shape System
+         ══════════════════════════════════════════════════════════════════ -->
+    <style name="ShapeAppearance.FocusGuard.Medium" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="ShapeAppearance.FocusGuard.Large" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">24dp</item>
+    </style>
+
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         Typography System
+         ══════════════════════════════════════════════════════════════════ -->
+    <style name="TextAppearance.FocusGuard.DisplayLarge" parent="TextAppearance.Material3.DisplayLarge">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">57sp</item>
+        <item name="android:letterSpacing">-0.025</item>
+    </style>
+
+    <style name="TextAppearance.FocusGuard.HeadlineLarge" parent="TextAppearance.Material3.HeadlineLarge">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:letterSpacing">-0.01</item>
+    </style>
+
+    <style name="TextAppearance.FocusGuard.HeadlineMedium" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.FocusGuard.TitleLarge" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="TextAppearance.FocusGuard.TitleMedium" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">0.015</item>
+    </style>
+
+    <style name="TextAppearance.FocusGuard.BodyLarge" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineHeight" tools:targetApi="28">24sp</item>
+    </style>
+
+    <style name="TextAppearance.FocusGuard.BodyMedium" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:lineHeight" tools:targetApi="28">20sp</item>
+    </style>
+
+    <style name="TextAppearance.FocusGuard.LabelLarge" parent="TextAppearance.Material3.LabelLarge">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.01</item>
+    </style>
+
+    <style name="TextAppearance.FocusGuard.LabelMedium" parent="TextAppearance.Material3.LabelMedium">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0.05</item>
+    </style>
+
+    <style name="TextAppearance.FocusGuard.LabelSmall" parent="TextAppearance.Material3.LabelSmall">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:letterSpacing">0.05</item>
+    </style>
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         Widget Overrides
+         ══════════════════════════════════════════════════════════════════ -->
+    <style name="Widget.FocusGuard.Card" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardCornerRadius">20dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="strokeWidth">0dp</item>
+    </style>
+
+    <style name="Widget.FocusGuard.Card.Outlined" parent="Widget.Material3.CardView.Outlined">
+        <item name="cardCornerRadius">20dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="strokeColor">@color/md_outline_variant</item>
+    </style>
+
+    <style name="Widget.FocusGuard.Switch" parent="Widget.Material3.CompoundButton.Switch">
+        <item name="thumbTint">@color/switch_thumb_color</item>
+        <item name="trackTint">@color/switch_track_color</item>
+    </style>
+
+    <style name="Widget.FocusGuard.Button" parent="Widget.Material3.Button">
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="cornerRadius">14dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.FocusGuard.LabelLarge</item>
+    </style>
+
+    <style name="Widget.FocusGuard.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="cornerRadius">14dp</item>
+        <item name="strokeColor">@color/md_outline_variant</item>
+        <item name="android:textAppearance">@style/TextAppearance.FocusGuard.LabelLarge</item>
+    </style>
+
+    <style name="Widget.FocusGuard.Button.Tonal" parent="Widget.Material3.Button.TonalButton">
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="cornerRadius">14dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.FocusGuard.LabelLarge</item>
+    </style>
+
 </resources>

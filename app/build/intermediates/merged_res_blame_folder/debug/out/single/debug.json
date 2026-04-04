@@ -1,34 +1,94 @@
 [
     {
-        "merged": "/home/codespace/.gradle/daemon/8.14/com.focusguard.app-merged_res-32:/layout_item_app_config.xml.flat",
-        "source": "/home/codespace/.gradle/daemon/8.14/com.focusguard.app-main-34:/layout/item_app_config.xml"
+        "merged": "com.focusguard.app-merged_res-33:/layout_activity_main.xml.flat",
+        "source": "com.focusguard.app-main-35:/layout/activity_main.xml"
     },
     {
-        "merged": "/home/codespace/.gradle/daemon/8.14/com.focusguard.app-merged_res-32:/layout_activity_blocked_sections.xml.flat",
-        "source": "/home/codespace/.gradle/daemon/8.14/com.focusguard.app-main-34:/layout/activity_blocked_sections.xml"
+        "merged": "com.focusguard.app-merged_res-33:/drawable_bg_app_icon_circle.xml.flat",
+        "source": "com.focusguard.app-main-35:/drawable/bg_app_icon_circle.xml"
     },
     {
-        "merged": "com.focusguard.app-merged_res-32:/xml_accessibility_service_config.xml.flat",
-        "source": "com.focusguard.app-main-34:/xml/accessibility_service_config.xml"
+        "merged": "com.focusguard.app-merged_res-33:/layout_item_blocked_section.xml.flat",
+        "source": "com.focusguard.app-main-35:/layout/item_blocked_section.xml"
     },
     {
-        "merged": "/home/codespace/.gradle/daemon/8.14/com.focusguard.app-merged_res-32:/mipmap-hdpi_ic_launcher.xml.flat",
-        "source": "/home/codespace/.gradle/daemon/8.14/com.focusguard.app-main-34:/mipmap-hdpi/ic_launcher.xml"
+        "merged": "com.focusguard.app-merged_res-33:/xml_accessibility_service_config.xml.flat",
+        "source": "com.focusguard.app-main-35:/xml/accessibility_service_config.xml"
     },
     {
-        "merged": "/home/codespace/.gradle/daemon/8.14/com.focusguard.app-merged_res-32:/layout_item_blocked_section.xml.flat",
-        "source": "/home/codespace/.gradle/daemon/8.14/com.focusguard.app-main-34:/layout/item_blocked_section.xml"
+        "merged": "com.focusguard.app-merged_res-33:/layout_activity_blocked_sections.xml.flat",
+        "source": "com.focusguard.app-main-35:/layout/activity_blocked_sections.xml"
     },
     {
-        "merged": "/home/codespace/.gradle/daemon/8.14/com.focusguard.app-merged_res-32:/mipmap-hdpi_ic_launcher_round.xml.flat",
-        "source": "/home/codespace/.gradle/daemon/8.14/com.focusguard.app-main-34:/mipmap-hdpi/ic_launcher_round.xml"
+        "merged": "com.focusguard.app-merged_res-33:/drawable_ic_accessibility.xml.flat",
+        "source": "com.focusguard.app-main-35:/drawable/ic_accessibility.xml"
     },
     {
-        "merged": "/home/codespace/.gradle/daemon/8.14/com.focusguard.app-merged_res-32:/xml_accessibility_service_config.xml.flat",
-        "source": "/home/codespace/.gradle/daemon/8.14/com.focusguard.app-main-34:/xml/accessibility_service_config.xml"
+        "merged": "com.focusguard.app-merged_res-33:/drawable_ic_arrow_back.xml.flat",
+        "source": "com.focusguard.app-main-35:/drawable/ic_arrow_back.xml"
     },
     {
-        "merged": "/home/codespace/.gradle/daemon/8.14/com.focusguard.app-merged_res-32:/layout_activity_main.xml.flat",
-        "source": "/home/codespace/.gradle/daemon/8.14/com.focusguard.app-main-34:/layout/activity_main.xml"
+        "merged": "com.focusguard.app-merged_res-33:/drawable_ic_battery.xml.flat",
+        "source": "com.focusguard.app-main-35:/drawable/ic_battery.xml"
+    },
+    {
+        "merged": "com.focusguard.app-merged_res-33:/drawable_ic_chevron_right.xml.flat",
+        "source": "com.focusguard.app-main-35:/drawable/ic_chevron_right.xml"
+    },
+    {
+        "merged": "com.focusguard.app-merged_res-33:/drawable_bg_hero_gradient.xml.flat",
+        "source": "com.focusguard.app-main-35:/drawable/bg_hero_gradient.xml"
+    },
+    {
+        "merged": "com.focusguard.app-merged_res-33:/drawable_ic_dot_active.xml.flat",
+        "source": "com.focusguard.app-main-35:/drawable/ic_dot_active.xml"
+    },
+    {
+        "merged": "com.focusguard.app-merged_res-33:/mipmap-hdpi_ic_launcher.xml.flat",
+        "source": "com.focusguard.app-main-35:/mipmap-hdpi/ic_launcher.xml"
+    },
+    {
+        "merged": "com.focusguard.app-merged_res-33:/drawable_ic_app_placeholder.xml.flat",
+        "source": "com.focusguard.app-main-35:/drawable/ic_app_placeholder.xml"
+    },
+    {
+        "merged": "com.focusguard.app-merged_res-33:/drawable_ic_theme_toggle.xml.flat",
+        "source": "com.focusguard.app-main-35:/drawable/ic_theme_toggle.xml"
+    },
+    {
+        "merged": "com.focusguard.app-merged_res-33:/drawable_ic_tune.xml.flat",
+        "source": "com.focusguard.app-main-35:/drawable/ic_tune.xml"
+    },
+    {
+        "merged": "com.focusguard.app-merged_res-33:/drawable_ripple_card.xml.flat",
+        "source": "com.focusguard.app-main-35:/drawable/ripple_card.xml"
+    },
+    {
+        "merged": "com.focusguard.app-merged_res-33:/mipmap-hdpi_ic_launcher_round.xml.flat",
+        "source": "com.focusguard.app-main-35:/mipmap-hdpi/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.focusguard.app-merged_res-33:/drawable_switch_track_color.xml.flat",
+        "source": "com.focusguard.app-main-35:/drawable/switch_track_color.xml"
+    },
+    {
+        "merged": "com.focusguard.app-merged_res-33:/drawable_ic_shield.xml.flat",
+        "source": "com.focusguard.app-main-35:/drawable/ic_shield.xml"
+    },
+    {
+        "merged": "com.focusguard.app-merged_res-33:/color_switch_thumb_color.xml.flat",
+        "source": "com.focusguard.app-main-35:/color/switch_thumb_color.xml"
+    },
+    {
+        "merged": "com.focusguard.app-merged_res-33:/color_switch_track_color.xml.flat",
+        "source": "com.focusguard.app-main-35:/color/switch_track_color.xml"
+    },
+    {
+        "merged": "com.focusguard.app-merged_res-33:/drawable_ic_dot_inactive.xml.flat",
+        "source": "com.focusguard.app-main-35:/drawable/ic_dot_inactive.xml"
+    },
+    {
+        "merged": "com.focusguard.app-merged_res-33:/layout_item_app_config.xml.flat",
+        "source": "com.focusguard.app-main-35:/layout/item_app_config.xml"
     }
 ]
